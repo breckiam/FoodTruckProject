@@ -54,7 +54,7 @@ public class FoodTruckApp {
 		}
 		
 		keepGoing = true;
-
+		FoodTruckApp fta = new FoodTruckApp();
 		
 		while (keepGoing) {
 			
@@ -71,20 +71,23 @@ public class FoodTruckApp {
 				switch (choice) {
 				case "1":
 				case "all":
-					listOfTrucks[0].listAllTrucks(listOfTrucks);
+					fta.listAllTrucks(listOfTrucks);
 					break;
 				case "2":
 				case "average": 
-					listOfTrucks[0].averageRating(listOfTrucks);
+					Double average = fta.averageRating(listOfTrucks);
+					System.out.println("Average Rating: " + average);
 					break;
 				case "3":
 				case "highest-rated":
-					listOfTrucks[0].highestRated(listOfTrucks);
+					FoodTruck highest = fta.highestRated(listOfTrucks);
+					System.out.println("Highest rated: " + highest.toString());
 					break;
 				case "4":
 				case "quit":
 				case "Quit":
-					System.exit(0);
+					keepGoing = false;
+					break;
 				default:
 					System.out.println("Please enter a vaild choice");
 					choice = null;
@@ -96,6 +99,48 @@ public class FoodTruckApp {
 
 		
 		kb.close();
+	}
+	
+	public FoodTruck highestRated(FoodTruck[] listOfTrucks) {
+		FoodTruck highest = listOfTrucks[0];
+		//TODO: exception error line 83
+		for (int i = 0; i < listOfTrucks.length; i++) {
+			if (listOfTrucks[i] != null) {
+				if (listOfTrucks[i].getRating() > highest.getRating()) {
+					highest = listOfTrucks[i];
+					
+				}
+			}
+
+		}
+		return highest;
+	}
+	
+	
+	public Double averageRating(FoodTruck[] listOfTrucks) {
+		double average = 0;
+		int numTrucks = 0;
+		//TODO exception error line 69
+		for (int i = 0; i < listOfTrucks.length; i++) {
+			if (listOfTrucks[i] == null) {
+				continue;
+			}
+			average += listOfTrucks[i].getRating();
+			numTrucks++;
+		}
+		average = average / numTrucks;
+		return average;
+
+	}
+	
+	public void listAllTrucks(FoodTruck[] listOfTrucks) {
+
+		for (int i = 0; i < listOfTrucks.length; i++) {
+			if (listOfTrucks[i] != null) {
+				System.out.println(listOfTrucks[i].toString());
+			}
+		}
+
 	}
 
 }

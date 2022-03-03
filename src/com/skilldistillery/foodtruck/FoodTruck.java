@@ -53,47 +53,4 @@ public class FoodTruck {
 		return truckInfo;
 	}
 
-	public void listAllTrucks(FoodTruck[] listOfTrucks) {
-
-		for (int i = 0; i < listOfTrucks.length; i++) {
-			if (listOfTrucks[i] != null) {
-				System.out.println(listOfTrucks[i].toString());
-			}
-		}
-
-	}
-
-	public void averageRating(FoodTruck[] listOfTrucks) {
-		double average = 0;
-		int numTrucks = 0;
-		//TODO exception error line 69
-		for (int i = 0; i < listOfTrucks.length; i++) {
-			if (listOfTrucks[i] == null) {
-				continue;
-			}
-			average += listOfTrucks[i].rating;
-			numTrucks++;
-		}
-		average = average / numTrucks;
-		System.out.println("Average Rating: " + average);
-
-	}
-
-	public void highestRated(FoodTruck[] listOfTrucks) {
-		FoodTruck highest = listOfTrucks[0];
-		//TODO: exception error line 83
-		for (int i = 0; i < listOfTrucks.length; i++) {
-			if (listOfTrucks[i] != null) {
-				if (listOfTrucks[i].rating > highest.rating) {
-					highest = listOfTrucks[i];
-					
-				}
-			}
-
-		}
-		
-		System.out.println("Highest rated: " + highest.toString());
-
-	}
-
 }
